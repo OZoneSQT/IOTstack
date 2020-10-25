@@ -121,6 +121,7 @@ $ nano docker-compose.yml
 
 This will give an error:
 ```
+$   #Wrong
 $   telegraf:
 $     container_name: telegraf
 $     image: telegraf
@@ -133,10 +134,11 @@ $       - influxdb
 $       - mosquitto
 ```
 
-yaml files are sensitive for the format
+yaml-files are sensitive for the format
 
 This is the right format:
 ```
+$   #Right
 $   telegraf:
 $     container_name: telegraf
 $     image: telegraf
