@@ -107,6 +107,57 @@ $ cd ~/IOTstack
 $ docker-compose up -d
 ```
 
+Note: If you recive an "yaml.parser.ParserError" after running: 
+
+```
+$ docker-compose up -d
+```
+This is fixed by editing the file docker-compose.yml
+
+```
+$ cd ~/IOTstack
+$ nano docker-compose.yml
+```
+
+This will give an error:
+```
+$   telegraf:
+$     container_name: telegraf
+$     image: telegraf
+$     volumes:
+$       - ./services/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+$     depends_on:
+$          - cadvisor-arm
+$          - node-exporter
+$       - influxdb
+$       - mosquitto
+```
+
+yaml files are sensitive for the format
+
+This is the right format:
+```
+$   telegraf:
+$     container_name: telegraf
+$     image: telegraf
+$     volumes:
+$       - ./services/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+$     depends_on:
+$       - cadvisor-arm
+$       - node-exporter
+$       - influxdb
+$       - mosquitto
+```
+
+When exiting the text-editor, press [ctrl] + [X] and then [Y] yes, to save the changes.  
+
+Then run this script agein:
+```
+$ cd ~/IOTstack
+$ nano docker-compose.yml
+```
+
+
 Once the stack has been brought up, it will stay up until you take it down. This includes shutdowns and reboots of your Raspberry Pi. If you do not want the stack to start automatically after a reboot, you need to stop the stack before you issue the reboot command.
 
 ### Stopping your IOTstack
